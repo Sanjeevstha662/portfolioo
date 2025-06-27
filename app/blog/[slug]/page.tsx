@@ -28,10 +28,10 @@ const getBlogPost = (slug: string) => {
       title: 'The Future of SEO: AI and Machine Learning in 2025',
       excerpt: 'Explore how artificial intelligence and machine learning are revolutionizing search engine optimization and what it means for digital marketers.',
       content: `
-        <h2>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
         <p>The landscape of Search Engine Optimization (SEO) is rapidly evolving, and artificial intelligence (AI) and machine learning (ML) are at the forefront of this transformation. As we move into 2025, understanding these technologies and their impact on SEO strategies has become crucial for digital marketers and website owners.</p>
         
-        <h2>How AI is Changing Search</h2>
+        <h2 id="ai-changing-search">How AI is Changing Search</h2>
         <p>Google's AI algorithms, including RankBrain and BERT, have fundamentally changed how search engines understand and process queries. These systems can now:</p>
         <ul>
           <li>Better understand user intent behind search queries</li>
@@ -40,7 +40,7 @@ const getBlogPost = (slug: string) => {
           <li>Adapt to new search patterns in real-time</li>
         </ul>
         
-        <h2>Machine Learning in Content Optimization</h2>
+        <h2 id="machine-learning">Machine Learning in Content Optimization</h2>
         <p>Machine learning algorithms are now capable of analyzing vast amounts of content data to identify patterns that lead to better search rankings. This includes:</p>
         <ul>
           <li>Content structure optimization</li>
@@ -49,10 +49,10 @@ const getBlogPost = (slug: string) => {
           <li>Content freshness scoring</li>
         </ul>
         
-        <h2>The Rise of Voice Search and AI Assistants</h2>
+        <h2 id="voice-search">The Rise of Voice Search and AI Assistants</h2>
         <p>With the increasing popularity of voice assistants like Siri, Alexa, and Google Assistant, SEO strategies must adapt to conversational queries and featured snippets optimization.</p>
         
-        <h2>Preparing for the AI-Driven Future</h2>
+        <h2 id="preparing-future">Preparing for the AI-Driven Future</h2>
         <p>To stay competitive in the AI-driven SEO landscape, consider these strategies:</p>
         <ol>
           <li>Focus on user intent rather than just keywords</li>
@@ -62,7 +62,7 @@ const getBlogPost = (slug: string) => {
           <li>Monitor and adapt to algorithm changes</li>
         </ol>
         
-        <h2>Conclusion</h2>
+        <h2 id="conclusion">Conclusion</h2>
         <p>The future of SEO lies in understanding and adapting to AI and machine learning technologies. By embracing these changes and focusing on user-centric strategies, businesses can maintain and improve their search visibility in the evolving digital landscape.</p>
       `,
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -384,4 +384,15 @@ export default function BlogPost() {
       </section>
     </div>
   );
+}
+
+// Important: generateStaticParams is required for static export of dynamic routes
+export async function generateStaticParams() {
+  // Return all slugs that exist in your blog
+  return [
+    { slug: 'future-of-seo-ai-machine-learning-2025' },
+    { slug: 'google-ads-optimization-maximizing-roi-2024' },
+    { slug: 'building-scalable-react-applications-best-practices' },
+    { slug: 'content-marketing-strategy-tech-startups' },
+  ];
 }
