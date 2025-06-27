@@ -9,7 +9,7 @@ import { ArrowRight, Download, ExternalLink, Github, Linkedin, Mail, Globe, Sear
 import Link from 'next/link';
 
 const skills = [
-  'SEO Specialist', 'React Developer', 'Digital Marketing', 'UI/UX Design', 
+  'SEO Specialist', 'React Developer', 'Digital Marketing', 'UI/UX Design',
   'Content Writing', 'Google Ads', 'Cyber Security', 'Next.js'
 ];
 
@@ -38,14 +38,14 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -56,34 +56,34 @@ export default function Home() {
               <Badge variant="secondary" className="mb-4 px-4 py-2">
                 Available for hire
               </Badge>
-              
+
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 Hi, I'm <span className="text-gradient">Sanjeev</span>
               </h1>
-              
+
               <p className="text-xl md:text-2xl text-muted-foreground mb-4">
                 SEO Specialist, Developer & Digital Builder
               </p>
-              
+
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Crafting Digital Success: From Code to Conversion. I help businesses grow through 
+                Crafting Digital Success: From Code to Conversion. I help businesses grow through
                 strategic SEO, modern web development, and compelling digital experiences.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Link href="/contact">
                   <Button size="lg" className="text-lg px-8 py-6 gradient-primary">
                     Hire Me <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link href="#"target="_blank" rel="noopener noreferrer">
+                <Link href="#" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                  <Download className="mr-2 w-5 h-5" />
-                  View Resume
+                    <Download className="mr-2 w-5 h-5" />
+                    View Resume
                   </Button>
                 </Link>
               </div>
-              
+
               <div className="flex flex-wrap justify-center gap-2 mb-8">
                 {skills.map((skill, index) => (
                   <motion.div
@@ -99,7 +99,7 @@ export default function Home() {
                 ))}
               </div>
             </motion.div>
-            
+
             {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -108,10 +108,10 @@ export default function Home() {
               className="flex justify-center space-x-4"
             >
               {[
-                {icon: Facebook, href: 'https://www.facebook.com/sanjeev.shrestha.662', label: 'Facebook'},
-                { icon: Github, href: 'https://github.com/Sanjeevstha662', label: 'GitHub', label: 'GitHub' },
+                { icon: Facebook, href: 'https://www.facebook.com/sanjeev.shrestha.662', label: 'Facebook' },
+                { icon: Github, href: 'https://github.com/Sanjeevstha662', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/sanjeev-shrestha-b64ba2271/', label: 'LinkedIn' },
-                { icon: Mail, href: 'sanjeevstha66@gmail.com', label: 'Email' },
+                { icon: Mail, href: 'mailto:sanjeevstha66@gmail.com', label: 'Email' }, // optional: add "mailto:"
               ].map((social) => (
                 <Link key={social.label} href={social.href}>
                   <Button variant="ghost" size="sm" className="hover:scale-110 transition-transform">
@@ -123,7 +123,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      
+
       {/* Featured Projects Section */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -152,7 +152,7 @@ export default function Home() {
               A showcase of my recent work in SEO, web development, and digital marketing
             </p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -191,7 +191,7 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -207,7 +207,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Skills Overview */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -223,7 +223,7 @@ export default function Home() {
               Combining technical expertise with creative vision to deliver results
             </p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -268,7 +268,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-accent">
         <div className="container mx-auto px-4">
@@ -283,7 +283,7 @@ export default function Home() {
               Ready to Start Your Project?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let's work together to bring your digital vision to life. 
+              Let's work together to bring your digital vision to life.
               From strategy to execution, I'm here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
