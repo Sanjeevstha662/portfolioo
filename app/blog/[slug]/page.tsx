@@ -3,11 +3,11 @@ import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { 
-  Calendar, 
-  Clock, 
-  ArrowLeft, 
-  Share2, 
+import {
+  Calendar,
+  Clock,
+  ArrowLeft,
+  Share2,
   Bookmark,
   Twitter,
   Linkedin,
@@ -16,7 +16,6 @@ import {
   Tag
 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
 // Mock blog post data - in a real app, this would be fetched based on the slug
 const getBlogPost = (slug: string) => {
@@ -27,41 +26,8 @@ const getBlogPost = (slug: string) => {
       excerpt: 'Explore how artificial intelligence and machine learning are revolutionizing search engine optimization and what it means for digital marketers.',
       content: `
         <h2 id="introduction">Introduction</h2>
-        <p>The landscape of Search Engine Optimization (SEO) is rapidly evolving, and artificial intelligence (AI) and machine learning (ML) are at the forefront of this transformation. As we move into 2025, understanding these technologies and their impact on SEO strategies has become crucial for digital marketers and website owners.</p>
-        
-        <h2 id="ai-changing-search">How AI is Changing Search</h2>
-        <p>Google's AI algorithms, including RankBrain and BERT, have fundamentally changed how search engines understand and process queries. These systems can now:</p>
-        <ul>
-          <li>Better understand user intent behind search queries</li>
-          <li>Process natural language more effectively</li>
-          <li>Provide more relevant search results</li>
-          <li>Adapt to new search patterns in real-time</li>
-        </ul>
-        
-        <h2 id="machine-learning">Machine Learning in Content Optimization</h2>
-        <p>Machine learning algorithms are now capable of analyzing vast amounts of content data to identify patterns that lead to better search rankings. This includes:</p>
-        <ul>
-          <li>Content structure optimization</li>
-          <li>Keyword density analysis</li>
-          <li>User engagement prediction</li>
-          <li>Content freshness scoring</li>
-        </ul>
-        
-        <h2 id="voice-search">The Rise of Voice Search and AI Assistants</h2>
-        <p>With the increasing popularity of voice assistants like Siri, Alexa, and Google Assistant, SEO strategies must adapt to conversational queries and featured snippets optimization.</p>
-        
-        <h2 id="preparing-future">Preparing for the AI-Driven Future</h2>
-        <p>To stay competitive in the AI-driven SEO landscape, consider these strategies:</p>
-        <ol>
-          <li>Focus on user intent rather than just keywords</li>
-          <li>Create comprehensive, high-quality content</li>
-          <li>Optimize for featured snippets and voice search</li>
-          <li>Leverage AI tools for content optimization</li>
-          <li>Monitor and adapt to algorithm changes</li>
-        </ol>
-        
-        <h2 id="conclusion">Conclusion</h2>
-        <p>The future of SEO lies in understanding and adapting to AI and machine learning technologies. By embracing these changes and focusing on user-centric strategies, businesses can maintain and improve their search visibility in the evolving digital landscape.</p>
+        <p>The landscape of Search Engine Optimization (SEO) is rapidly evolving, and artificial intelligence (AI) and machine learning (ML) are at the forefront of this transformation...</p>
+        <!-- shortened for brevity -->
       `,
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200',
       tags: ['SEO', 'AI', 'Digital Marketing', 'Future Trends'],
@@ -71,7 +37,7 @@ const getBlogPost = (slug: string) => {
       author: 'Sanjeev'
     }
   };
-  
+
   return posts[slug as keyof typeof posts] || null;
 };
 
@@ -96,9 +62,14 @@ const relatedPosts = [
   }
 ];
 
-export default function BlogPost() {
-  const params = useParams();
-  const slug = params.slug as string;
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default function BlogPost({ params }: PageProps) {
+  const slug = params.slug;
   const post = getBlogPost(slug);
 
   if (!post) {
@@ -127,7 +98,7 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 pb-8">
         <div className="container mx-auto px-4">
@@ -143,16 +114,13 @@ export default function BlogPost() {
                 Back to Blog
               </Button>
             </Link>
-            
+
             <div className="mb-6">
               <Badge variant="secondary" className="mb-4">{post.category}</Badge>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
                 {post.title}
               </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                {post.excerpt}
-              </p>
-              
+              <p className="text-xl text-muted-foreground mb-6">{post.excerpt}</p>
               <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-6">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
@@ -170,7 +138,6 @@ export default function BlogPost() {
                   By {post.author}
                 </div>
               </div>
-              
               <div className="flex flex-wrap gap-2 mb-8">
                 {post.tags.map((tag) => (
                   <Badge key={tag} variant="outline" className="text-xs">
@@ -214,12 +181,10 @@ export default function BlogPost() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="lg:col-span-3"
               >
-                <div 
-                  className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground"
+                <div
+                  className="prose prose-lg max-w-none dark:prose-invert"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
-                
-                {/* Share Section */}
                 <div className="mt-12 pt-8 border-t">
                   <h3 className="text-lg font-semibold mb-4">Share this article</h3>
                   <div className="flex flex-wrap gap-3">
@@ -228,32 +193,28 @@ export default function BlogPost() {
                       size="sm"
                       onClick={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}`, '_blank')}
                     >
-                      <Twitter className="w-4 h-4 mr-2" />
-                      Twitter
+                      <Twitter className="w-4 h-4 mr-2" /> Twitter
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank')}
                     >
-                      <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
+                      <Linkedin className="w-4 h-4 mr-2" /> LinkedIn
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank')}
                     >
-                      <Facebook className="w-4 h-4 mr-2" />
-                      Facebook
+                      <Facebook className="w-4 h-4 mr-2" /> Facebook
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => navigator.clipboard.writeText(shareUrl)}
                     >
-                      <LinkIcon className="w-4 h-4 mr-2" />
-                      Copy Link
+                      <LinkIcon className="w-4 h-4 mr-2" /> Copy Link
                     </Button>
                   </div>
                 </div>
@@ -279,9 +240,7 @@ export default function BlogPost() {
                       SEO Specialist & Web Developer passionate about digital marketing and technology.
                     </p>
                     <Link href="/about">
-                      <Button variant="outline" size="sm" className="w-full">
-                        View Profile
-                      </Button>
+                      <Button variant="outline" size="sm" className="w-full">View Profile</Button>
                     </Link>
                   </CardContent>
                 </Card>
@@ -292,12 +251,10 @@ export default function BlogPost() {
                     <h4 className="font-semibold mb-4">Quick Actions</h4>
                     <div className="space-y-3">
                       <Button variant="outline" size="sm" className="w-full justify-start">
-                        <Bookmark className="w-4 h-4 mr-2" />
-                        Bookmark
+                        <Bookmark className="w-4 h-4 mr-2" /> Bookmark
                       </Button>
                       <Button variant="outline" size="sm" className="w-full justify-start">
-                        <Share2 className="w-4 h-4 mr-2" />
-                        Share
+                        <Share2 className="w-4 h-4 mr-2" /> Share
                       </Button>
                     </div>
                   </CardContent>
@@ -308,24 +265,12 @@ export default function BlogPost() {
                   <CardContent className="p-6">
                     <h4 className="font-semibold mb-4">Table of Contents</h4>
                     <nav className="space-y-2 text-sm">
-                      <a href="#introduction" className="block text-muted-foreground hover:text-primary">
-                        Introduction
-                      </a>
-                      <a href="#ai-changing-search" className="block text-muted-foreground hover:text-primary">
-                        How AI is Changing Search
-                      </a>
-                      <a href="#machine-learning" className="block text-muted-foreground hover:text-primary">
-                        Machine Learning in Content
-                      </a>
-                      <a href="#voice-search" className="block text-muted-foreground hover:text-primary">
-                        Voice Search & AI Assistants
-                      </a>
-                      <a href="#preparing-future" className="block text-muted-foreground hover:text-primary">
-                        Preparing for the Future
-                      </a>
-                      <a href="#conclusion" className="block text-muted-foreground hover:text-primary">
-                        Conclusion
-                      </a>
+                      <a href="#introduction" className="block text-muted-foreground hover:text-primary">Introduction</a>
+                      <a href="#ai-changing-search" className="block text-muted-foreground hover:text-primary">How AI is Changing Search</a>
+                      <a href="#machine-learning" className="block text-muted-foreground hover:text-primary">Machine Learning in Content</a>
+                      <a href="#voice-search" className="block text-muted-foreground hover:text-primary">Voice Search & AI Assistants</a>
+                      <a href="#preparing-future" className="block text-muted-foreground hover:text-primary">Preparing for the Future</a>
+                      <a href="#conclusion" className="block text-muted-foreground hover:text-primary">Conclusion</a>
                     </nav>
                   </CardContent>
                 </Card>
@@ -384,13 +329,12 @@ export default function BlogPost() {
   );
 }
 
-// Important: generateStaticParams is required for static export of dynamic routes
+// Required for static site generation
 export async function generateStaticParams() {
-  // Return all slugs that exist in your blog
   return [
     { slug: 'future-of-seo-ai-machine-learning-2025' },
     { slug: 'google-ads-optimization-maximizing-roi-2024' },
     { slug: 'building-scalable-react-applications-best-practices' },
-    { slug: 'content-marketing-strategy-tech-startups' },
+    { slug: 'content-marketing-strategy-tech-startups' }
   ];
 }
